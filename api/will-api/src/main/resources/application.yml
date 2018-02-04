@@ -1,0 +1,5 @@
+server:
+  port: 14001
+# ssl:
+#    key-store: classpath:your-name.jks
+#    key-password: 213994798350221
