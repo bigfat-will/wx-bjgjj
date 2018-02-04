@@ -1,0 +1,67 @@
+<!--index.wxml-->
+<view class="container page">
+  <view class="page__hd">
+    <view  class="page__hd">
+      <view class="userinfo">
+        <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </view>
+    </view>
+    <view class="usermotto">
+      <text class="user-motto">{{motto}}</text>
+    </view>
+  </view>
+  <view class="page__bd">
+    <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">验证方式</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker bindchange="bindPickerChange" value="{{idcordType}}" range="{{idcordTypes}}">
+            <view class="weui-select weui-select_in-select-after">{{idcordTypes[idcordType]}}</view>
+          </picker>
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">证件号</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="idcard" value="{{idcard_history}}" class="weui-input" placeholder="{{placeholder}}" bindblur="idcardInputEvent" />
+        </view>
+      </view>
+
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">密码</view>
+        </view>
+        <view class="weui-cell__bd">
+          <input name="password" class="weui-input" style="number" password placeholder="请输入密码" bindblur="passwordInputEvent" />
+        </view>
+      </view>
+    </view>
+
+    <label class="weui-agree">
+        <view class="weui-agree__text">
+         <text>{{tips}}</text>
+        </view>
+  
+    </label>
+
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="bindButtion">确定</button>
+    </view>
+  </view>
+
+</view>
+
+<view class="weui-footer">
+  <view class="weui-footer__links">
+    <navigator url="" class="weui-footer__link">will</navigator>
+  </view>
+  <view class="weui-footer__text">Copyright © wuxiao@smallfat.cn</view>
+</view>

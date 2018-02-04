@@ -1,0 +1,189 @@
+<view class="page">
+  <view class="page__hd">
+
+  </view>
+  <view class="page__bd">
+    <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+            <view class="weui-navbar__title">{{item}}</view>
+          </view>
+        </block>
+        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+      </view>
+      <view class="weui-tab__panel">
+        <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+
+          <view class="weui-cells__title">个人信息</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+              <view class="weui-cell__bd">姓名</view>
+              <view class="weui-cell__ft">{{openbanks_now.XM}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">个人登记号</view>
+              <view class="weui-cell__ft">{{openbanks_now.GRDJH}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">证件类型</view>
+              <view class="weui-cell__ft">{{openbanks_now.ZJLX}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">证件号</view>
+              <view class="weui-cell__ft">{{openbanks_now.ZJH}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">个人编号</view>
+              <view class="weui-cell__ft">{{openbanks_now.GRBH}}</view>
+            </view>
+          </view>
+
+          <view class="weui-cells__title">当前单位信息</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+              <view class="weui-cell__bd">单位登记号</view>
+              <view class="weui-cell__ft">{{openbanks_now.DWBH}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">单位名称</view>
+              <view class="weui-cell__ft">{{openbanks_now.DWMC}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">所属管理部编号</view>
+              <view class="weui-cell__ft">{{openbanks_now.JBJGBH}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">所属管理部名称</view>
+              <view class="weui-cell__ft">{{openbanks_now.JBJGMC}}</view>
+            </view>
+          </view>
+
+          <view class="weui-cells__title">当前账户信息</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+              <view class="weui-cell__bd">当前余额</view>
+              <view class="weui-cell__ft">{{openbanks_now.YE}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">账户状态</view>
+              <view class="weui-cell__ft">{{openbanks_now.JCZT}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">当年缴存金额</view>
+              <view class="weui-cell__ft">{{openbanks_now.BNJCE}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">当年提取金额</view>
+              <view class="weui-cell__ft">{{openbanks_now.BNZQE}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">上年结转余额</view>
+              <view class="weui-cell__ft">{{openbanks_now.SNJZYE}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">最后业务日期</view>
+              <view class="weui-cell__ft">{{openbanks_now.JSRQ}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">转出金额</view>
+              <view class="weui-cell__ft">{{openbanks_now.BNZQE}}</view>
+            </view>
+          </view>
+
+        </view>
+
+        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                <view class="weui-label">开始日期</view>
+              </view>
+              <view class="weui-cell__bd">
+                <picker mode="date" value="{{beginDate}}" fields="month" bindchange="bindBeginDateChange">
+                  <view class="weui-input">{{beginDate}}</view>
+                </picker>
+              </view>
+            </view>
+            <view class="weui-cell weui-cell_input">
+              <view class="weui-cell__hd">
+                <view class="weui-label">结束日期</view>
+              </view>
+              <view class="weui-cell__bd">
+                <picker mode="date" value="{{endDate}}" fields="month" bindchange="bindEndDateChange">
+                  <view class="weui-input">{{endDate}}</view>
+                </picker>
+              </view>
+            </view>
+          </view>
+
+          <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" bindtap="bindSearch">开始查询</button>
+          </view>
+
+          <view wx:if="{{boo_items}}" class="weui-cells__title">
+            <view class="weui-cell">
+              <view class="weui-cell__bd">到账日期</view>
+              <view class="weui-cell__ft">增减金额（元）</view>
+            </view>
+          </view>
+
+
+          <view class="weui-cells weui-cells_after-title">
+            <view wx:for="{{items}}" wx:for-index="index" wx:for-item="item"  class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+              <view class="weui-cell__bd">{{item.JZRQ}}</view>
+              <view bindtap="showDialogBtn" id = "{{item.JZRQ_H}}" class="weui-cell__ft weui-cell__ft_in-access">{{item.ZJE}}</view>
+            </view>
+
+          </view>
+
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<view class="weui-footer">
+  <view class="weui-footer__links">
+    <navigator url="" class="weui-footer__link">will</navigator>
+  </view>
+  <view class="weui-footer__text">Copyright © wuxiao@smallfat.cn</view>
+</view>
+
+<!--弹窗-->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+<view class="modal-dialog" wx:if="{{showModal}}">
+
+          <view class="weui-cells__title">个人明细</view>
+          <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+              <view class="weui-cell__bd">到账日期</view>
+              <view class="weui-cell__ft">{{obj_dialog.JZRQ}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">汇补缴年月</view>
+              <view class="weui-cell__ft">{{obj_dialog.HJNY}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">业务类型</view>
+              <view class="weui-cell__ft">{{obj_dialog.BZXX}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">增加额</view>
+              <view class="weui-cell__ft">{{obj_dialog.ZJE}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">减少额</view>
+              <view class="weui-cell__ft">{{obj_dialog.ZQE}}</view>
+            </view>
+            <view class="weui-cell">
+              <view class="weui-cell__bd">余额</view>
+              <view class="weui-cell__ft">{{obj_dialog.YE}}</view>
+            </view>
+          </view>
+  <view class="modal-footer">
+    <view class="btn-cancel" bindtap="onCancel" data-status="cancel">关闭</view>
+  </view>
+</view>
